@@ -14,3 +14,5 @@ C:\Users\zidli\Desktop\Livin W\I - Projects\C#\AdventOfCode\obj\Debug\net8.0\Adv
 C:\Users\zidli\Desktop\Livin W\I - Projects\C#\AdventOfCode\obj\Debug\net8.0\ref\AdventOfCode.dll
 C:\Users\zidli\Desktop\Livin W\I - Projects\C#\AdventOfCode\bin\Debug\net8.0\Y2024\Day1\test.txt
 C:\Users\zidli\Desktop\Livin W\I - Projects\C#\AdventOfCode\bin\Debug\net8.0\Y2024\Day2\test.txt
+C:\Users\zidli\Desktop\Livin W\I - Projects\C#\AdventOfCode\obj\Debug\net8.0\AdventOfCode.sourcelink.json
+C:\Users\zidli\Desktop\Livin W\I - Projects\C#\AdventOfCode\bin\Debug\net8.0\Y2024\Day3\test.txt
