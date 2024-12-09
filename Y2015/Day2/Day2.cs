@@ -14,7 +14,7 @@ public class Day2(): Year2015(nameof(Day2))
 
         foreach (var line in lines)
         {
-            int[] dimensions = line.Split('x').Select(int.Parse).ToArray();
+            int[] dimensions = line.Split('x').Select(int.Parse).ToArray(); // 2, 3, 5
 
             int length = dimensions[0];
             int width = dimensions[1];
