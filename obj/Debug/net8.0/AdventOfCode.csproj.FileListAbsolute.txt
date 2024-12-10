@@ -23,3 +23,4 @@ C:\Users\zidli\Desktop\Livin W\I - Projects\C#\AdventOfCode\bin\Debug\net8.0\Y20
 C:\Users\zidli\Desktop\Livin W\I - Projects\C#\AdventOfCode\bin\Debug\net8.0\Y2015\Day3\test.txt
 C:\Users\zidli\Desktop\Livin W\I - Projects\C#\AdventOfCode\bin\Debug\net8.0\Y2015\Day4\test.txt
 C:\Users\zidli\Desktop\Livin W\I - Projects\C#\AdventOfCode\bin\Debug\net8.0\Y2015\Day5\test.txt
+C:\Users\zidli\Desktop\Livin W\I - Projects\C#\AdventOfCode\bin\Debug\net8.0\Y2015\Day6\test.txt
