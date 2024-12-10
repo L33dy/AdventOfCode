@@ -1,5 +1,5 @@
-﻿using AdventOfCode.Y2015.Day6;
+﻿using AdventOfCode.Y2015.Day7;
 
-var day = new Day6();
+var day = new Day7();
 await day.DownloadInput();
 day.Solve();
