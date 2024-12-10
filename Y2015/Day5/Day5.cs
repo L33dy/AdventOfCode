@@ -33,10 +33,23 @@ public class Day5(): Year2015(nameof(Day5))
 
         foreach (var line in lines)
         {
-            
+            if (RepeatsCorrectly(line) && HasPair(line))
+            {
+                count++;
+            }
         }
         
         return count.ToString();
+    }
+    
+    private bool HasPair(string input)
+    {
+        return Regex.IsMatch(input, @"(\w{2}).*?\1");
+    }
+
+    private bool RepeatsCorrectly(string input)
+    {
+        return Regex.IsMatch(input, @"(.)(.)\1");
     }
 
     private int GetVowels(string input)
