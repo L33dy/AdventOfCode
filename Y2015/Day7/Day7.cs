@@ -13,14 +13,11 @@ public class Day7(): Year2015(nameof(Day7))
         string input = ReadPlainInput(true);
         string[] lines = input.SplitInput();
         
-        string signalPattern = @"^\d+$";
         string notPattern = @"(NOT .+)";
         string andPattern = @"(.+ AND .+)";
         string orPattern = @"(.+ OR .+)";
         string lShiftPattern = @"(.+ LSHIFT \d+)";
         string rShiftPattern = @"(.+ RSHIFT \d+)";
-
-        string numPattern = @"\d";
 
         foreach (var line in lines)
         {
@@ -35,18 +32,15 @@ public class Day7(): Year2015(nameof(Day7))
             Console.WriteLine(Regex.IsMatch(instruction, notPattern));
             Console.WriteLine(Regex.IsMatch(instruction, lShiftPattern));
             Console.WriteLine(Regex.IsMatch(instruction, rShiftPattern));*/
-
-            // SIGNAL
-            if (Regex.IsMatch(instruction, signalPattern))
-            {
-                wires[outputWire] = ushort.Parse(instruction);
-            }
+            
             // NOT
-            else if (Regex.IsMatch(instruction, notPattern))
+            if (Regex.IsMatch(instruction, notPattern))
             {
                 string target = instruction.Split(' ')[1];
 
                 bool present = wires.TryGetValue(target, out ushort value);
+
+                if (!present) continue;
 
                 wires[outputWire] = (ushort)~value;
             }
@@ -60,10 +54,10 @@ public class Day7(): Year2015(nameof(Day7))
                 bool xPresent = true;
                 bool yPresent = true;
 
-                ushort valueX = 0;
-                ushort valueY = 0;
+                ushort valueX;
+                ushort valueY;
 
-                if (!Regex.IsMatch(targetX, numPattern))
+                if (!IsOnlyNum(targetX))
                 {
                     xPresent = wires.TryGetValue(targetX, out valueX);
                 }
@@ -72,7 +66,7 @@ public class Day7(): Year2015(nameof(Day7))
                     valueX = ushort.Parse(targetX);
                 }
 
-                if (!Regex.IsMatch(targetY, numPattern))
+                if (!IsOnlyNum(targetY))
                 {
                     yPresent = wires.TryGetValue(targetY, out valueY);
                 }
@@ -91,9 +85,32 @@ public class Day7(): Year2015(nameof(Day7))
                 string targetX = instruction.Split("OR")[0].Trim();
                 string targetY = instruction.Split("OR")[1].Trim();
 
-                bool xPresent = wires.TryGetValue(targetX, out ushort valueX);
-                bool yPresent = wires.TryGetValue(targetY, out ushort valueY);
-                
+                bool xPresent = true;
+                bool yPresent = true;
+
+                ushort valueX;
+                ushort valueY;
+
+                if (!IsOnlyNum(targetX))
+                {
+                    wires.TryGetValue(targetX, out valueX);
+                }
+                else
+                {
+                    valueX = ushort.Parse(targetX);
+                }
+
+                if (!IsOnlyNum(targetY))
+                {
+                    wires.TryGetValue(targetY, out valueY);
+                }
+                else
+                {
+                    valueY = ushort.Parse(targetY);
+                }
+
+                if (!xPresent || !yPresent) continue;
+
                 wires[outputWire] = (ushort)(valueX | valueY);
             }
             // LSHIFT
@@ -103,6 +120,8 @@ public class Day7(): Year2015(nameof(Day7))
                 int byTarget = int.Parse(instruction.Split("LSHIFT")[1].Trim());
 
                 bool present = wires.TryGetValue(target, out ushort value);
+
+                if (!present) continue;
                 
                 wires[outputWire] = (ushort)(value << byTarget);
             }
@@ -114,7 +133,25 @@ public class Day7(): Year2015(nameof(Day7))
 
                 bool present = wires.TryGetValue(target, out ushort value);
 
+                if (!present) continue;
+
                 wires[outputWire] = (ushort)(value >> byTarget);
+            }
+            // SIGNAL
+            else
+            {
+                if (IsOnlyNum(instruction))
+                {
+                    wires[outputWire] = ushort.Parse(instruction);
+                }
+                else
+                {
+                    bool present = wires.TryGetValue(instruction, out ushort value);
+
+                    if (!present) continue;
+
+                    wires[outputWire] = value;
+                }
             }
         }
 
@@ -131,5 +168,10 @@ public class Day7(): Year2015(nameof(Day7))
     protected override string PartTwo()
     {
         return "";
+    }
+
+    private bool IsOnlyNum(string input)
+    {
+        return Regex.IsMatch(input, @"\d");
     }
 }
